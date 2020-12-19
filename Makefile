@@ -5,7 +5,7 @@ NAME = Tic-Tac-Toe
 $(EXECUTABLE_NAME): $(NAME).o Game.o
 	$(CC) $(NAME).o Game.o Player.h -o $(EXECUTABLE_NAME)
 
-$(NAME).o: Game.o
+$(NAME).o: Game.o $(NAME).c
 	$(CC) $(NAME).c Game.h -c
 
 Game.o: Game.c Game.h Player.h

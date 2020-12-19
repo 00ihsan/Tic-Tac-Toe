@@ -12,9 +12,57 @@ int main()
 
         int currentPlayer = 0;
         while (1) //main game loop.
-        {     
-            char wonchar = '\n';     
-            if (checkGridFull()) //check if its a tie.
+        {    
+            char wonchar = '\n';       
+            if (checkPlayerWon(&wonchar)) //checks if a player has won the game.
+            {
+                Player* playerWon = NULL;
+                if (Players[0].Icon == wonchar)
+                {
+                   playerWon = &Players[0];
+                   Players[0].Score++;
+                }
+                else if (Players[1].Icon == wonchar)
+                {
+                    playerWon = &Players[1];
+                    Players[1].Score++;
+                }
+                printScore(&Players[0], &Players[1]);
+                printGrid();
+                printf("%s won this round!\nPlay again? (yes/no) ", playerWon->Name);
+                char choice[4] = {"NULL"};
+                scanf("%s", choice);
+                if (strcmp(choice, "Yes") == 0 || strcmp(choice, "yes") == 0)
+                {
+                    clearPositions();
+                    setDefaultGrid();
+                    currentPlayer = 0;
+                }
+                else if (strcmp(choice, "No") == 0 || strcmp(choice, "no") == 0)
+                {
+                    if (Players[1].Score > Players[0].Score)
+                    {
+                        printf("Allright!\n%s won this game by +%d!\nSee you later %s and %s!\n",Players[1].Name, Players[1].Score-Players[0].Score, Players[0].Name, Players[1].Name);
+                    }
+                    else if (Players[0].Score > Players[1].Score)
+                    {
+                        printf("Allright!\n%s won this game by +%d!\nSee you later %s and %s!\n",Players[0].Name, Players[0].Score-Players[1].Score, Players[0].Name, Players[1].Name);
+                    }
+                    else if (Players[0].Score == Players[1].Score)
+                    {
+                        printf("Allright!\nNobody won this game, its a tie!\nSee you later %s and %s!\n", Players[0].Name, Players[1].Name);
+                    }
+                    else { return -1; }
+                    return 0;
+                }
+                else
+                {
+                    printf("Unknown: %s", choice);
+                }
+            }
+            else
+            {            
+                if (checkGridFull()) //check if it's a tie.
             {
                 printGrid();
                 printf("It's a tie!\nPlay again? (yes/no) ");
@@ -31,39 +79,7 @@ int main()
                     printf("Allright! See you later %s and %s!\n", Players[0].Name, Players[1].Name);
                     return 0;
                 }
-            }  
-            if (checkPlayerWon(&wonchar)) //checks if player has won the game.
-            {
-                Player* playerWon = NULL;
-                if (Players[0].Icon == wonchar)
-                {
-                   playerWon = &Players[0];
-                   Players[0].Score++;
-                }
-                else if (Players[1].Icon == wonchar)
-                {
-                    playerWon = &Players[1];
-                    Players[1].Score++;
-                }
-                printGrid();
-                printf("%s won this round!\nPlay again? (yes/no) ", playerWon->Name);
-                char choice[4] = {"NULL"};
-                scanf("%s", choice);
-                if (strcmp(choice, "Yes") == 0 || strcmp(choice, "yes") == 0)
-                {
-                    clearPositions();
-                    setDefaultGrid();
-                    currentPlayer = 0;
-                }
-                else if (strcmp(choice, "No") == 0 || strcmp(choice, "no") == 0)
-                {
-                    printf("Allright! See you later %s and %s!\n", Players[0].Name, Players[1].Name);
-                    return 0;
-                }
-                else
-                {
-                    printf("Unknown: %s", choice);
-                }
+            }
             }
             printScore(&Players[0], &Players[1]);
             printGrid();
