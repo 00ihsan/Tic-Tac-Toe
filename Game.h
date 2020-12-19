@@ -5,7 +5,7 @@
 #include "Player.h"
 #include <string.h>
 
-char grid[9] = {"","","","","","","","",""};
+char grid[9] = {""};
 
 int initPlayers(Player* Player1, Player* Player2);
 
