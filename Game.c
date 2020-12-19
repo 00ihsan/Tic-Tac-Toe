@@ -22,6 +22,13 @@ int initPlayers(Player* Player1, Player* Player2)
 
 void printGrid()
 {
- printf("|  %c  |  %c  |  %c  |\n", &grid[0], grid[1], &grid[2]);
+    printf("+-----+-----+-----+");
+    printf("|  %c  |  %c  |  %c  |\n", &grid[0], grid[1], &grid[2]);
 }
-printf("------------------");
+    printf("+-----+-----+-----+");
+        printf("|  %c  |  %c  |  %c  |\n", &grid[3], grid[4], &grid[5]);
+}
+    printf("+-----+-----+-----+");
+        printf("|  %c  |  %c  |  %c  |\n", &grid[6], grid[7], &grid[8]);
+}
+    printf("+-----+-----+-----+");

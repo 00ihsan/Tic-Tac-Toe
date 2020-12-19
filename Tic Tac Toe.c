@@ -8,6 +8,11 @@ int main()
     if (success == 1)
     {
         //start the main game. 
+        printGrid();
+        while (true)
+        {
+            
+        }
     }
     else if (success == 2)
     {
