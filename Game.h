@@ -9,4 +9,8 @@ int initPlayers(Player* Player1, Player* Player2);
 
 void printGrid();
 
+void printScore(Player* player1, Player* player2);
+
+void setDefaultGrid();
+
 #endif

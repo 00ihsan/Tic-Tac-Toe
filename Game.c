@@ -31,4 +31,29 @@ void printGrid()
     printf("+-----+-----+-----+\n");
         printf("|  %c  |  %c  |  %c  |\n", &grid[6], grid[7], &grid[8]);
     printf("+-----+-----+-----+\n");
+
+
+void printScore(Player* player1, Player* player2)
+{
+    printf("%s: %d     %s: %d\n", player1.Name, *player1.score, player2.Name, *player2.score);
+}
+
+int draw(int position, Player p)
+{
+    if (p!= NULL && position > 0 && position < 10)
+        grid[position-1] = p.Icon;
+        return 0;
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+void setDefaultGrid()
+{
+    for (int i = 0; i < 9; i++)
+    {
+        grid[i] = (char)i+1;
+    }
 }
