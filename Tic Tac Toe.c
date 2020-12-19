@@ -9,7 +9,7 @@ int main()
     {
         //start the main game. 
         printGrid();
-        while (true)
+        while (1)
         {
             
         }
