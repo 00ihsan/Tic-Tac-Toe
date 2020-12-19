@@ -7,7 +7,7 @@ int main()
     int success = initPlayers(&Players[0], &Players[1]);
     if (success == 1)
     {
-        //start the main game.
+        //start the main game. 
     }
     else if (success == 2)
     {
