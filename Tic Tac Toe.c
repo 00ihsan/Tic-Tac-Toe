@@ -11,7 +11,9 @@ int main()
         printGrid();
         while (1)
         {
-            
+            char command[10] = "NULL";
+            scanf("%s",&command);
+            if (strcmp(command, "exit") == 0) { return 0; }
         }
     }
     else if (success == 2)
