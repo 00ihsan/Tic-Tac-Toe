@@ -1,6 +1,8 @@
 #include "Game.h"
 
-char grid[9] = {'1','2','3','4','5','6','7','8','9'};
+char grid[9] = {'1'-'0','2'-'0','3'-'0','4'-'0','5'-'0','6'-'0','7'-'0','8'-'0','9'-'0'};
+
+int usedPositions[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 int initPlayers(Player* Player1, Player* Player2)
 {
@@ -24,36 +26,47 @@ int initPlayers(Player* Player1, Player* Player2)
 
 void printGrid()
 {
-    printf("+-----+-----+-----+\n");
-    printf("|  %c  |  %c  |  %c  |\n", &grid[0], grid[1], &grid[2]);
-    printf("+-----+-----+-----+\n");
-        printf("|  %c  |  %c  |  %c  |\n", &grid[3], grid[4], &grid[5]);
-    printf("+-----+-----+-----+\n");
-        printf("|  %c  |  %c  |  %c  |\n", &grid[6], grid[7], &grid[8]);
-    printf("+-----+-----+-----+\n");
+    printf("\n");
+    printf("   %c  |  %c  |  %c  \n", grid[0], grid[1], grid[2]);
+    printf("------+-----+------\n");
+    printf("   %c  |  %c  |  %c  \n", grid[3], grid[4], grid[5]);
+    printf("------+-----+------\n");
+    printf("   %c  |  %c  |  %c  \n", grid[6], grid[7], grid[8]);
+    printf("\n");
+}
 
+int checkPosition(int position)
+{
+    if (usedPositions[position - 1]) { return 1; } else { return 0; }
+    return -1;
+}
 
 void printScore(Player* player1, Player* player2)
 {
-    printf("%s: %d     %s: %d\n", player1.Name, *player1.score, player2.Name, *player2.score);
+    printf("%s: %d (%c)    %s: %d (%c)\n", player1->Name, player1->Score, player1->Icon, player2->Name, player2->Score, player2->Icon);
 }
 
 int draw(int position, Player p)
 {
-    if (p!= NULL && position > 0 && position < 10)
-        grid[position-1] = p.Icon;
-        return 0;
-    }
-    else
+    if (position > 0 && position < 10)
     {
-        return -1;
+        int used = checkPosition(position);
+        if (!used)
+        {
+            usedPositions[position-1] = 1;
+            grid[position-1] = p.Icon;
+            return 0;
+        } 
+        else { return -2; }
     }
+    return -1;
 }
 
 void setDefaultGrid()
 {
     for (int i = 0; i < 9; i++)
     {
-        grid[i] = (char)i+1;
+        sprintf(&grid[i], "%d", i+1);
+        // grid[i] = (char)(i+1) - (char)'0';
     }
 }

@@ -13,4 +13,6 @@ void printScore(Player* player1, Player* player2);
 
 void setDefaultGrid();
 
+int draw(int position, Player p);
+
 #endif
