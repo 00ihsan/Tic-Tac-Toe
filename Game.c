@@ -19,3 +19,9 @@ int initPlayers(Player* Player1, Player* Player2)
     else { return 0; }
     return -1;
 }
+
+void printGrid()
+{
+ printf("|  %c  |  %c  |  %c  |\n", &grid[0], grid[1], &grid[2]);
+}
+printf("------------------");
