@@ -70,3 +70,28 @@ void setDefaultGrid()
         // grid[i] = (char)(i+1) - (char)'0';
     }
 }
+
+void clearScreen()
+{
+    printf("\n\n\n\n\n\n\n\n\n\n");
+}
+
+int checkGridFull()
+{
+    uint16_t result = 0;
+    for (int i = 0; i < 9; i++)
+    {
+        result = (result << 1) | usedPositions[i];
+    }
+
+    if (result == 511) { return 1; }
+    else {return 0;}
+}
+
+void clearPositions()
+{
+    for (int i = 0; i < 9; i++)
+    {
+        usedPositions[i] = 0;
+    }
+}

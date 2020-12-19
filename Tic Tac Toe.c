@@ -11,13 +11,31 @@ int main()
         //start the main game. 
 
         int currentPlayer = 0;
-        while (1)
-        {
+        while (1) //main game loop.
+        {          
+            if (checkGridFull()) //check if its a tie.
+            {
+                printf("It's a tie!\nPlay again? (yes/no) ");
+                char choice[4] = {"NULL"};
+                scanf("%s", choice);
+                if (strcmp(choice, "Yes") == 0 || strcmp(choice, "yes") == 0)
+                {
+                clearPositions();
+                setDefaultGrid();
+                currentPlayer = 0;
+                }
+                else if (strcmp(choice, "No") == 0 || strcmp(choice, "no") == 0)
+                {
+                    printf("Allright! See you later %s and %s\n", Players[0].Name, Players[1].Name);
+                    return 0;
+                }
+
+            }  
             printScore(&Players[0], &Players[1]);
             printGrid();
             printf("%s, Your turn.\n", Players[currentPlayer].Name);
             char command[10] = "NULL";
-            printf("Where do you want to put %c? ", &Players[currentPlayer].Icon);
+            printf("Where do you want to put %c? ", Players[currentPlayer].Icon);
             int successScan = scanf("%s",&command);
             if (strcmp(command, "exit\0") == 0) { return 0; }
             else 
@@ -36,6 +54,7 @@ int main()
                     if (currentPlayer) { currentPlayer = 0; } else { currentPlayer = 1; }   
                 }
             }
+            clearScreen();
         }
     }
     else if (success == 2)
