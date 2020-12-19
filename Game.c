@@ -1,5 +1,7 @@
 #include "Game.h"
 
+char grid[9] = {"1","2","3","4","5","6","7","8","9"};
+
 int initPlayers(Player* Player1, Player* Player2)
 {
     //temp to store scanf
