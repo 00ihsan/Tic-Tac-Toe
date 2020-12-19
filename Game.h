@@ -22,5 +22,6 @@ int checkGridFull();
 
 void clearPositions();
 
+int checkPlayerWon(char* wonChar);
 
 #endif

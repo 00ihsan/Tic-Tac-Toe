@@ -95,3 +95,49 @@ void clearPositions()
         usedPositions[i] = 0;
     }
 }
+
+int checkPlayerWon(char* wonChar)
+{
+    if (grid[0] == grid[1] && grid[1] == grid[2])
+    {
+        *wonChar = grid[1];
+        return 1;
+    }
+    else if (grid[3] == grid[4] && grid[4] == grid[5])
+    {
+        *wonChar = grid[4];
+        return 1;
+    }
+    else if (grid[6] == grid[7] && grid[7] == grid[8])
+    {
+        *wonChar = grid[7];
+        return 1;
+    }
+    else if (grid[0] == grid[3] && grid[3] == grid[6])
+    {
+        *wonChar = grid[6];
+        return 1;
+    }
+    else if (grid[1] == grid[4] && grid[4] == grid[7])
+    {
+        *wonChar = grid[4];
+        return 1;
+    }
+    else if (grid[2] == grid[5] && grid[5] == grid[8])
+    {
+        *wonChar = grid[5];
+        return 1;
+    }
+    else if (grid[2] == grid[4] && grid[4] == grid[6])
+    {
+        *wonChar = grid[4];
+        return 1;
+    }
+    else if (grid[0] == grid[4] && grid[4] == grid[8])
+    {
+        *wonChar = grid[4];
+        return 1;
+    }
+    
+    return 0;
+}
