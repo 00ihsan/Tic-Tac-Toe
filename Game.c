@@ -9,7 +9,7 @@ int initPlayers(Player* Player1, Player* Player2)
     //temp to store scanf
     char name11[32] = "NULL11";
     char name22[32] = "NULL22";
-    printf("Welcome to Tic Tac Toe v1.5\n(C) Ihsansoft 2020\n\n");
+    printf("Welcome to Tic Tac Toe v2\n(C) Ihsansoft 2020\n\n");
     printf("Player 1 name: ");
     scanf("%s", &name11);
     printf("Player 2 name: ");
