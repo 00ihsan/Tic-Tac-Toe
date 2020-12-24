@@ -8,6 +8,4 @@ typedef struct Player
     char Icon;
 } Player;
 
-Player* addPlayer(char* name);
-
 #endif
