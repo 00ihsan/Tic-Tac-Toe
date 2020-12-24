@@ -2,6 +2,7 @@
 
 int main()
 {
+    int nextPlayer = 0;
     Player Players[2] = {{"NULL", 0, 'X'}, {"NULL",0 ,'O'}};
 
     int success = initPlayers(&Players[0], &Players[1]);
@@ -21,11 +22,13 @@ int main()
                 {
                    playerWon = &Players[0];
                    Players[0].Score++;
+                   nextPlayer = 1;
                 }
                 else if (Players[1].Icon == wonchar)
                 {
                     playerWon = &Players[1];
                     Players[1].Score++;
+                    nextPlayer = 0;
                 }
                 printScore(&Players[0], &Players[1]);
                 printGrid();
@@ -36,7 +39,7 @@ int main()
                 {
                     clearPositions();
                     setDefaultGrid();
-                    currentPlayer = 0;
+                    currentPlayer = nextPlayer;
                 }
                 else if (strcmp(choice, "No") == 0 || strcmp(choice, "no") == 0)
                 {
@@ -63,23 +66,23 @@ int main()
             else
             {            
                 if (checkGridFull()) //check if it's a tie.
-            {
-                printGrid();
-                printf("It's a tie!\nPlay again? (yes/no) ");
-                char choice[4] = {"NULL"};
-                scanf("%s", choice);
-                if (strcmp(choice, "Yes") == 0 || strcmp(choice, "yes") == 0)
                 {
-                    clearPositions();
-                    setDefaultGrid();
-                    currentPlayer = 0;
+                    printGrid();
+                    printf("It's a tie!\nPlay again? (yes/no) ");
+                    char choice[4] = {"NULL"};
+                    scanf("%s", choice);
+                    if (strcmp(choice, "Yes") == 0 || strcmp(choice, "yes") == 0)
+                    {
+                        clearPositions();
+                        setDefaultGrid();
+                        currentPlayer = nextPlayer;
+                    }
+                    else if (strcmp(choice, "No") == 0 || strcmp(choice, "no") == 0)
+                    {
+                        printf("Allright! See you later %s and %s!\n", Players[0].Name, Players[1].Name);
+                        return 0;
+                    }
                 }
-                else if (strcmp(choice, "No") == 0 || strcmp(choice, "no") == 0)
-                {
-                    printf("Allright! See you later %s and %s!\n", Players[0].Name, Players[1].Name);
-                    return 0;
-                }
-            }
             }
             printScore(&Players[0], &Players[1]);
             printGrid();
