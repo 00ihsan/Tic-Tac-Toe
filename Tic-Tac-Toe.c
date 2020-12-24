@@ -6,7 +6,7 @@ int main()
     Player Players[2] = {{"NULL", 0, 'X'}, {"NULL",0 ,'O'}};
 
     int success = initPlayers(&Players[0], &Players[1]);
-    if (success == 1)
+    if (success)
     {
     setDefaultGrid();
         //start the main game. 
