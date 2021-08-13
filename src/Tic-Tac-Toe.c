@@ -71,16 +71,25 @@ int main()
                     printf("It's a tie!\nPlay again? (yes/no) ");
                     char choice[4] = {"NULL"};
                     scanf("%s", choice);
-                    if (strcmp(choice, "Yes") == 0 || strcmp(choice, "yes") == 0)
+                    int exitTheTieState = 0;
+                    while (exitTheTieState == 0)
                     {
-                        clearPositions();
-                        setDefaultGrid();
-                        currentPlayer = nextPlayer;
-                    }
-                    else if (strcmp(choice, "No") == 0 || strcmp(choice, "no") == 0)
-                    {
-                        printf("Allright! See you later %s and %s!\n", Players[0].Name, Players[1].Name);
-                        return 0;
+                        if (strcmp(choice, "Yes") == 0 || strcmp(choice, "yes") == 0 || strcmp(choice, "y") == 0 || strcmp(choice, "Y") == 0)
+                        {
+                            clearPositions();
+                            setDefaultGrid();
+                            currentPlayer = nextPlayer;
+                            exitTheTieState = 1;
+                        }
+                        else if (strcmp(choice, "No") == 0 || strcmp(choice, "no") == 0 || strcmp(choice, "n") == 0 || strcmp(choice, "N") == 0)
+                        {
+                            printf("Allright! See you later %s and %s!\n", Players[0].Name, Players[1].Name);
+                            return 0;
+                        }
+                        else
+                        {
+                            printf("Unknown command: %s", choice);
+                        }
                     }
                 }
             }
