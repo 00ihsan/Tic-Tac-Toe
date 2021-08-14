@@ -4,6 +4,39 @@ char grid[9] = {'1'-'0','2'-'0','3'-'0','4'-'0','5'-'0','6'-'0','7'-'0','8'-'0',
 
 int usedPositions[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
+int AskCancelGame(Player* Player1, Player* Player2)
+{
+    char choice[4] = {"NULL"};
+    scanf("%s", choice);
+    if (strcmp(choice, "Yes") == 0 || strcmp(choice, "yes") == 0 || strcmp(choice, "Y") == 0 || strcmp(choice, "y") == 0)
+    {
+        clearPositions();
+        setDefaultGrid();
+        return 0;
+    }
+    else if (strcmp(choice, "No") == 0 || strcmp(choice, "no") == 0 || strcmp(choice, "N") == 0 || strcmp(choice, "n") == 0)
+    {
+        if (Player2->Score > Player1->Score)
+        {
+            printf("Allright!\n%s won this game by +%d!\nSee you later %s and %s!\n",&Player2->Name, Player2->Score-Player1->Score, Player1->Name, Player2->Name);
+        }
+        else if (Player1->Score > Player2->Score)
+        {
+            printf("Allright!\n%s won this game by +%d!\nSee you later %s and %s!\n",&Player1->Name, Player1->Score-Player2->Score, Player1->Name, Player2->Name);
+        }
+        else if (Player1->Score == Player2->Score)
+        {
+            printf("Allright!\nNobody won this game, its a tie!\nSee you later %s and %s!\n", Player1->Name, Player2->Name);
+        }
+        else { return -1; }
+        return 1;
+    }
+    else
+    {
+        printf("Unknown: %s", choice);
+    }
+}
+
 int initPlayers(Player* Player1, Player* Player2)
 {
     //temp to store scanf

@@ -26,3 +26,5 @@ run: $(EXECUTABLE_NAME)
 clean:
 	rm -f src/compilationfiles/Game.o
 	rm -f src/compilationfiles/$(NAME).o
+	rm -f src/Player.h.gch
+	rm -f src/Game.h.gch

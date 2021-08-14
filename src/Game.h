@@ -6,6 +6,8 @@
 #include "Player.h"
 #include <string.h>
 
+int AskCancelGame();
+
 int initPlayers(Player* Player1, Player* Player2);
 
 void printGrid();
