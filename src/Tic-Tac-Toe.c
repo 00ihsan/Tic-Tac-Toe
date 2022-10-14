@@ -3,16 +3,20 @@
 int main()
 {
     Player Players[2] = {{"NULL", 0, 'X'}, {"NULL",0 ,'O'}};
-
+    clearScreen();
+    printf("Welcome to Tic Tac Toe V3!\n\r");
+    printf("(C) Ihsansoft 2022\n\r");
     int success = initPlayers(&Players[0], &Players[1]);
     if (success)
     {
-    setDefaultGrid();
+        clearScreen();
+        setDefaultGrid();
         //start the main game. 
 
         int currentPlayer = 0;
         while (1) //main game loop.
         {    
+            clearScreen();
             char wonchar = '\n';       
             if (checkPlayerWon(&wonchar)) //checks if a player has won the game.
             {
@@ -32,7 +36,7 @@ int main()
                 printScore(&Players[0], &Players[1]);
                 printGrid();
                 printf("%s won this round!\nPlay again? (yes/no) ", playerWon->Name);
-                if (AskCancelGame(Players[0], Players[1])) {return 0;}
+		if (AskCancelGame(Players[0], Players[1])) {return 0;} 
             }
             else if (checkGridFull()) //check if it's a tie.
             {
@@ -67,7 +71,6 @@ int main()
                         if (currentPlayer) { currentPlayer = 0; } else { currentPlayer = 1; }
                     }
                 }
-                clearScreen();
             }
         }
     }

@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <unistd.h>
 
 char grid[9] = {'1'-'0','2'-'0','3'-'0','4'-'0','5'-'0','6'-'0','7'-'0','8'-'0','9'-'0'};
 
@@ -42,7 +43,6 @@ int initPlayers(Player* Player1, Player* Player2)
     //temp to store scanf
     char name11[32] = "NULL11";
     char name22[32] = "NULL22";
-    printf("Welcome to Tic Tac Toe v2\n(C) Ihsansoft 2020\n\n");
     printf("Player 1 name: ");
     scanf("%s", &name11);
     printf("Player 2 name: ");
@@ -106,7 +106,8 @@ void setDefaultGrid()
 
 void clearScreen()
 {
-    printf("\n\n\n\n\n\n\n\n\n\n");
+  const char *CLEAR_SCREEN_ANSI = "\e[1;1H\e[2J";
+  write(STDOUT_FILENO, CLEAR_SCREEN_ANSI, 12);
 }
 
 int checkGridFull()
